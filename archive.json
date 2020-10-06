@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-10-04T00:33:09.280282+00:00",
+  "timestamp": "2020-10-06T00:32:39.319657+00:00",
   "repo": "tlswg/tls13-spec",
   "labels": [
     {
@@ -11216,6 +11216,22 @@
           "updatedAt": "2018-11-15T01:22:57Z"
         }
       ]
+    },
+    {
+      "number": 1200,
+      "id": "MDU6SXNzdWU3MTUyNDEzMDk=",
+      "title": "Even shorter secret names?",
+      "url": "https://github.com/tlswg/tls13-spec/issues/1200",
+      "state": "OPEN",
+      "author": "davidben",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "exporter_main_secret and resumption_main_secret strike me as not needing an adjective in the middle at all. Perhaps exporter_secret and resumption_secret?\r\n\r\nFor the exporter secret, dropping \"main\" avoids the acronym collision with the EMS extension, and there are no other secrets associated with exporters, so there's no use in designating this as the main one.\r\n\r\nFor the resumption secret, there is a potential confusion between resumption_[main_]secret and the derived PSK associated with the ticket (section {#NSTMessage}), but we don't seem to give the latter a name in the first place so I think that's fine.\r\n\r\nThis also gives us nice short KDF labels when we're able to change those: \"exporter\" and \"resumption\". (Or perhaps even \"export\" and \"resume\" if those don't fit in a hash block.)",
+      "createdAt": "2020-10-06T00:05:59Z",
+      "updatedAt": "2020-10-06T00:05:59Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
