@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-11-19T00:24:22.556126+00:00",
+  "timestamp": "2020-12-03T00:29:19.254715+00:00",
   "repo": "tlswg/tls13-spec",
   "labels": [
     {
@@ -60189,6 +60189,46 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 1205,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTMxMzM0MzQx",
+      "title": "Discuss tracking implications of session resumption.",
+      "url": "https://github.com/tlswg/tls13-spec/pull/1205",
+      "state": "OPEN",
+      "author": "davidben",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In WG discussion of draft-vvv-tls-cross-sni-resumption-00, tracking\r\nimplications came up. While that draft does expand the set of servers\r\nthat can cross-resume, it's not a new issue. For instance, on the Web,\r\nif https://a.example and https://b.example both include a subresource to\r\na common https://tracker.example, TLS session resumption may be used to\r\ncorrelate activity across the two sites.\r\n\r\nAdd some text to discuss this. This is distinct from the single-use\r\nticket mitigation, which only covers correlation by passive observers.\r\nCorrelation by the server itself is pretty much inherent to session\r\nresumption and other cache-like optimizations. Instead, the text points\r\nthis out and gives an example of how applications can keep their\r\nresumption scopes consistent with their privacy goals.\r\n\r\nFixes #1201.\r\n\r\n(CC @vasilvv)",
+      "createdAt": "2020-12-02T22:42:17Z",
+      "updatedAt": "2020-12-03T00:24:02Z",
+      "baseRepository": "tlswg/tls13-spec",
+      "baseRefName": "main",
+      "baseRefOid": "b71bdb739c75ec18f13bbbaaebb4a2efb9a2e93a",
+      "headRepository": "davidben/tls13-spec",
+      "headRefName": "resumption-tracking",
+      "headRefOid": "1a67fd23382d0f2c1f1edfd5131e5af7f0be4c7a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTQzMzQ2NDMy",
+          "commit": {
+            "abbreviatedOid": "1a67fd2"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-12-03T00:23:55Z",
+          "updatedAt": "2020-12-03T00:23:55Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
