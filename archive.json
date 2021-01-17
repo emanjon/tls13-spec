@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-12-08T00:29:48.001704+00:00",
+  "timestamp": "2021-01-17T01:05:12.125784+00:00",
   "repo": "tlswg/tls13-spec",
   "labels": [
     {
@@ -11280,6 +11280,44 @@
       "updatedAt": "2020-12-06T23:59:04Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 1207,
+      "id": "MDU6SXNzdWU3ODYzNTYwMTE=",
+      "title": "Clarify requirements for HkdfLabel ",
+      "url": "https://github.com/tlswg/tls13-spec/issues/1207",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Over in [OPAQUE](https://github.com/cfrg/draft-irtf-cfrg-opaque/issues/112), @crockeea asks the following in reference to the HkdfLabel \"Label\" field:\r\n\r\n   \"Is Label required to be non-null, or is the string required to be null-terminated?\"\r\n\r\nI couldn't find the answer immediately in RFC8446, so I felt an issue here would be useful just in case we need to clarify things.",
+      "createdAt": "2021-01-14T21:33:47Z",
+      "updatedAt": "2021-01-14T22:45:32Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "richsalz",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "If you look at the registry, https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml, you get pointed to https://tools.ietf.org/html/rfc5705 because the interface/API is the same.  Skimming that, the label is NOT \\0 terminated and it's implied that they are not NULL.  See the end of Section 4.",
+          "createdAt": "2021-01-14T22:10:29Z",
+          "updatedAt": "2021-01-14T22:10:29Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thanks! Perhaps we can add that as a note here? ",
+          "createdAt": "2021-01-14T22:33:49Z",
+          "updatedAt": "2021-01-14T22:33:59Z"
+        },
+        {
+          "author": "davidben",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Re RFC5705, I think there's a few different things going on here. RFC5705 is the TLS exporter interface, while HkdfLabel is part of the lower-level TLS 1.3 HKDF-Expand-Label function. HKDF-Expand-Label doesn't need to mess with NUL-termination or embedded NULs to maintain injectivity. The HkdfLabel structure already has an embedded length prefix.\r\n\r\nRFC8446's implementation of the RFC5705 interface uses HKDF-Expand-Label and passes the label in directly. RFC8446 imposes no requirements on the label, so that works out fine.\r\n\r\nRFC5705 was originally specified for TLS 1.2 actually messed up and *does* have potential injectivity problems because the construction ultimately concatenates a variable-length label with a variable-length randoms + context string. RFC5705 papers over this by requiring that \"IANA MUST also verify that one label is not a prefix of any other label\". This requirement doesn't apply to HKDF-Expand-Label itself, since that's lower-level than exporters, and it needn't apply since HKDF-Expand-Label's construction doesn't have this problem. (Though I guess it does apply to the exporter interface in RFC8446 by way of using the same registry.)",
+          "createdAt": "2021-01-14T22:45:31Z",
+          "updatedAt": "2021-01-14T22:45:31Z"
+        }
+      ]
     }
   ],
   "pulls": [
