@@ -93,6 +93,7 @@ informative:
   RFC7465:
   RFC7568:
   RFC7685:
+  RFC8773:
 
   SSL2:
        title: "The SSL Protocol"
@@ -5534,7 +5535,7 @@ the PSK binder. {{PSK-FINISHED}}
 describes a concrete attack on constructions that do not bind to
 the server's certificate (see also {{Kraw16}}). It is unsafe to use certificate-based client
 authentication when the client might potentially share the same
-PSK/key-id pair with two different endpoints.  Implementations MUST
+PSK/key-id pair with two different endpoints. Implementations MUST
 NOT combine external PSKs with certificate-based authentication of
 either the client or server. Future specifications MAY provide an
 extension to permit this.
